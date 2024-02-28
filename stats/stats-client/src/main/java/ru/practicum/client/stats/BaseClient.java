@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class BaseClient {
-    protected final RestTemplate rest;
+    protected final RestTemplate restTemplate;
 
-    public BaseClient(RestTemplate rest) {
-        this.rest = rest;
+    public BaseClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     protected ResponseEntity<Object> get(String path) {
@@ -81,9 +81,9 @@ public class BaseClient {
         ResponseEntity<Object> shareitServerResponse;
         try {
             if (parameters != null) {
-                shareitServerResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
+                shareitServerResponse = restTemplate.exchange(path, method, requestEntity, Object.class, parameters);
             } else {
-                shareitServerResponse = rest.exchange(path, method, requestEntity, Object.class);
+                shareitServerResponse = restTemplate.exchange(path, method, requestEntity, Object.class);
             }
         } catch (HttpStatusCodeException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
