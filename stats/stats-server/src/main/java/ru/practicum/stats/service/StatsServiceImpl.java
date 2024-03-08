@@ -11,7 +11,6 @@ import ru.practicum.stats.model.Stats;
 import ru.practicum.stats.repository.StateRepository;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
@@ -28,10 +27,7 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public List<ViewStats> getStats(String startSt, String endSt, List<String> uris, Boolean unique) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime start = LocalDateTime.parse(startSt, format);
-        LocalDateTime end = LocalDateTime.parse(endSt, format);
+    public List<ViewStats> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
         if (start.isAfter(end) || start.equals(end)) {
             throw new ValidationException("Некорректно заданы временные заданы параметры поиска");
         }
