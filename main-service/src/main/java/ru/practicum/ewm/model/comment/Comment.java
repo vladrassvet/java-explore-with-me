@@ -11,8 +11,8 @@ import ru.practicum.ewm.model.user.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Data
 @Builder
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "comments")
